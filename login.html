@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Surprise ❤️</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#ff9a9e,#fad0c4);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.container{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.2);
+    text-align:center;
+    width:350px;
+}
+
+input{
+    width:90%;
+    padding:10px;
+    margin:10px 0;
+    border-radius:10px;
+    border:1px solid #ccc;
+}
+
+button{
+    background:#ff4f81;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#ff2e6b;
+}
+
+#message{
+    margin-top:15px;
+    color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>🩵 Login Spesial 🩵</h2>
+
+    <input type="text" id="nama" placeholder="Masukkan Nama Lengkap">
+
+    <br>
+
+    <input type="date" id="password">
+
+    <br>
+
+    <button onclick="cekLogin()">Masuk</button>
+
+    <p id="message"></p>
+
+</div>
+
+<script>
+function cekLogin(){
+
+    let nama = document.getElementById("nama").value;
+    let pw = document.getElementById("password").value;
+
+    // 2026-10-30 = 30 Oktober 2006
+    if(nama !== "" && pw === "2006-10-30"){
+
+document.body.innerHTML = `
+
+<style>
+
+html,body{
+    margin:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+}
+
+.message{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    text-align:center;
+    color:white;
+    z-index:999;
+}
+
+.message button{
+    margin-top:20px;
+    padding:15px 25px;
+    border:none;
+    border-radius:25px;
+    background:white;
+    color:#ff4f81;
+    font-size:16px;
+}
+
+.heart{
+    position:absolute;
+    color:red;
+    animation:fall linear infinite;
+}
+
+@keyframes fall{
+    from{
+        transform:translateY(-100px);
+    }
+    to{
+        transform:translateY(110vh);
+    }
+}
+
+</style>
+
+<div class="message">
+    <h1>🩵 Hai Sayang 🩵</h1>
+    <h2>${nama}</h2>
+
+    <p>
+        Akuu punya satu hadiah ulangtahun lagii buat kamu hihi🩵
+    </p>
+
+    <button onclick="mulaiKenangan()">
+        Jelajahi 🩵
+    </button>
+</div>
+
+`;
+
+for(let i=0;i<60;i++){
+
+    const heart = document.createElement("div");
+
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.top = "-50px";
+
+    heart.style.fontSize =
+    (Math.random()*30+15)+"px";
+
+    heart.style.animationDuration =
+    (Math.random()*5+4)+"s";
+
+    document.body.appendChild(heart);
+}
+
+window.mulaiKenangan = function(){
+
+const musik = new Audio("warm-memories.mp3");
+
+musik.volume = 0.7;
+musik.loop = true;
+
+musik.play().catch(err=>{
+    console.log(err);
+});
+alert(musik.src);
+
+document.body.innerHTML = `
+
+<style>
+
+body{
+    margin:0;
+    overflow:hidden;
+    background:#111;
+    width:100vw;
+    height:100vh;
+}
+
+.judul{
+    position:fixed;
+    top:20px;
+    width:100%;
+    text-align:center;
+    color:white;
+    font-size:28px;
+    z-index:9999;
+}
+
+.fotoJatuh{
+    position:absolute;
+    top:-250px;
+    border-radius:18px;
+    box-shadow:0 0 20px rgba(255,255,255,.4);
+    animation:jatuh linear forwards;
+}
+
+@keyframes jatuh{
+
+    from{
+        top:-250px;
+    }
+
+    to{
+        top:120vh;
+    }
+
+}
+
+</style>
+
+<div class="judul">
+🎂 Hari Ini Semuanya Tentang Kamu 🩵
+</div>
+
+`;
+
+const foto = [];
+
+for(let i = 0; i <= 45; i++){
+    foto.push("./f (" + i + ").jpg");
+}
+
+let indexFoto = 0;
+
+const hujanFoto = setInterval(()=>{
+
+    let img=document.createElement("img");
+
+    img.src = foto[indexFoto];
+
+indexFoto++;
+
+if(indexFoto >= foto.length){
+    indexFoto = 0;
+}
+
+    img.className="fotoJatuh";
+
+    img.style.left =
+    Math.random()*90+"vw";
+
+    img.style.width =
+    (90+Math.random()*130)+"px";
+
+    img.style.rotate =
+    (-20+Math.random()*40)+"deg";
+
+    img.style.animationDuration =
+    (8+Math.random()*6)+"s";
+
+    console.log(img.src);
+    document.body.appendChild(img);
+
+    setTimeout(()=>{
+        img.remove();
+    },12000);
+
+},350);
+setTimeout(()=>{
+
+    clearInterval(hujanFoto);
+
+document.body.innerHTML = `
+
+<style>
+
+body{
+    margin:0;
+    background:#111;
+    color:white;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:Arial;
+    padding:40px;
+}
+
+#surat{
+    max-width:800px;
+    font-size:22px;
+    line-height:1.8;
+    white-space:pre-wrap;
+}
+
+</style>
+
+<div id="surat"></div>
+
+`;
+
+const pesan = `Hai Kekasihku 🩵
+
+Selamat ulang tahun ke-20 yaa sayangkuu cintakuu duniakuu cantiknya akuu kekasihkuu semestakuu 🎂
+
+Hari ini umur kamu bertambah satu tahun.
+Dari 19, hari ini menjadi tahun ke-20 mu menjalani sebuah kehidupan.
+
+Akuu cuma ingin mengucapkan 
+terima kasih karena sudah menjadi dirimu sendiri.
+
+Terima kasih 
+untuk semua senyum yang pernah kamu berikan.
+
+Terima kasih
+untuk semua cerita yang pernah kamu bagikan.
+
+Semoga di umur yang baru ini kamu selalu sehat.
+
+Selalu bahagia.
+
+Selalu dikelilingi orang-orang yang sayang sama kamu.
+
+Dan semoga semua yang kamu impikan
+bisa perlahan terwujud satu per satu.
+
+Jangan terlalu keras sama diri sendiri yaa
+Karena ada aku yang selalu berusaha untuk menemani kamu. 
+
+Setidaknya, menurut aku
+kamu sudah hebattt karena bisa sampai sejauh ini sayangggg.
+
+Happy Birthday 🩵🎂`;
+
+let i = 0;
+
+const surat =
+document.getElementById("surat");
+
+const ketik = setInterval(()=>{
+
+    surat.textContent += pesan.charAt(i);
+    i++;
+
+    if(i >= pesan.length){
+
+        clearInterval(ketik);
+
+        surat.innerHTML += `
+
+        <br><br>
+
+        <button
+        onclick="alert('Masih ada hadiah terakhir hihi 🩵')"
+        style="
+        padding:15px 30px;
+        border:none;
+        border-radius:25px;
+        background:#ff4f81;
+        color:white;
+        font-size:18px;
+        ">
+        🎁 Buka Hadiah Terakhir
+        </button>
+
+        `;
+
+    }
+
+},40);
+
+},30000);
+
+};
+    }
+    else{
+        document.getElementById("message").innerHTML =
+        "Nama atau tanggal lahir salah 😢";
+    }
+}
+</script>
+
+</body>
+</html>
